@@ -1,0 +1,22 @@
+syntax = "proto3";
+
+import "gtfs-realtime.proto";
+package transit_realtime;
+
+message StopTimeUpdate {
+  optional StopTimeEvent arrival = 1;
+  optional StopTimeEvent departure = 2;
+  optional StopTimeUpdateScheduleRelationship schedule_relationship = 3;
+
+  enum StopTimeUpdateScheduleRelationship {
+    SCHEDULED = 0;
+    SKIPPED = 1;
+    NO_DATA = 2;
+  }
+}
+
+message StopTimeEvent {
+  optional int32 delay = 1;
+  optional int64 time = 2;
+  optional int32 uncertainty = 3;
+}
