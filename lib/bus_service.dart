@@ -40,17 +40,15 @@ class BusService {
     BitmapDescriptor busIcon = await _getBusIcon();
 
     for (var entity in feedMessage.entity) {
-      if (entity.vehicle != null) {
-        var vehicle = entity.vehicle;
-        var lat = vehicle.position.latitude;
-        var lng = vehicle.position.longitude;
-        var marker = Marker(
-          markerId: MarkerId(vehicle.vehicle.id),
-          position: LatLng(lat, lng),
-          icon: busIcon,
-        );
-        markers.add(marker);
-      }
+      var vehicle = entity.vehicle;
+      var lat = vehicle.position.latitude;
+      var lng = vehicle.position.longitude;
+      var marker = Marker(
+        markerId: MarkerId(vehicle.vehicle.id),
+        position: LatLng(lat, lng),
+        icon: busIcon,
+      );
+      markers.add(marker);
     }
 
     return markers;
