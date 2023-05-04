@@ -14,7 +14,7 @@ class BusService {
       imageBytes,
       minWidth: 50,
       minHeight: 50,
-      quality: 90,
+      quality: 100,
     );
     return BitmapDescriptor.fromBytes(compressedBytes);
   }
