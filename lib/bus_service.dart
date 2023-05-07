@@ -20,7 +20,7 @@ class BusService {
   }
 
   static Future<List<Marker>> getBusLocations() async {
-    // Fetch the GTFS-realtime data from the API endpoint.
+    //* Fetch the GTFS-realtime data from the API endpoint.
     var client = HttpClient();
     var request = await client.getUrl(Uri.parse(
         dotenv.env['GTFS_REALTIME_API_URL']!));
@@ -31,12 +31,11 @@ class BusService {
     var response = await request.close();
     var responseBodyBytes = await response.fold<List<int>>([], (a, b) => a..addAll(b));
 
-    // Parse the GTFS-realtime data and extract the bus locations.
+    //* Parse the GTFS-realtime data and extract the bus locations.
     var feedMessage = FeedMessage();
     feedMessage.mergeFromBuffer(responseBodyBytes);
     List<Marker> markers = [];
 
-    // Load the custom bus icon
     BitmapDescriptor busIcon = await _getBusIcon();
 
     for (var entity in feedMessage.entity) {

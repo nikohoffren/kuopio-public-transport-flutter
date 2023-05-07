@@ -63,7 +63,7 @@ class MapState extends State<Map> {
       body: Stack(
         children: [
           GoogleMap(
-            mapType: MapType.hybrid,
+            mapType: MapType.normal,
             initialCameraPosition: _kuopioCity,
             onMapCreated: (GoogleMapController controller) async {
               _controller.complete(controller);
