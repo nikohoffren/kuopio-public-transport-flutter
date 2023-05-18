@@ -1,23 +1,17 @@
 import 'dart:convert';
 import 'dart:io';
+import 'package:flutter/material.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'src/generated/gtfs-realtime.pb.dart';
-import 'package:flutter_image_compress/flutter_image_compress.dart';
-import 'package:flutter/services.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
 
 class BusService {
-  static Future<BitmapDescriptor> _getBusIcon() async {
-    final imageData = await rootBundle.load('assets/bus-icon.png');
-    final imageBytes = imageData.buffer.asUint8List();
-    final compressedBytes = await FlutterImageCompress.compressWithList(
-      imageBytes,
-      minWidth: 50,
-      minHeight: 50,
-      quality: 100,
-    );
-    return BitmapDescriptor.fromBytes(compressedBytes);
-  }
+static Future<BitmapDescriptor> _getBusIcon() async {
+  return await BitmapDescriptor.fromAssetImage(
+    const ImageConfiguration(devicePixelRatio: 1),
+    'assets/bus-icon-40px.png',
+  );
+}
 
   static Future<List<Marker>> getBusLocations() async {
     //* Fetch the GTFS-realtime data from the API endpoint.
